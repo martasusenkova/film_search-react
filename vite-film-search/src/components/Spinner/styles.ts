@@ -19,8 +19,8 @@ export const Loader = styled.div`
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: #9370db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 
   &::before {
     content: "";
@@ -32,8 +32,8 @@ export const Loader = styled.div`
     border-radius: 50%;
     border: 3px solid transparent;
     border-top-color: #ba55d3;
-    -webkit-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
   }
 
   &::after {

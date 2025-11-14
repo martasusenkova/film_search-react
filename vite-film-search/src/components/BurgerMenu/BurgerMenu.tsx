@@ -3,7 +3,7 @@ import { Background, Burger, Menu, MenuHeader, StyledBurgerMenu } from "./styles
 import { BurgerIcon, CrossIcon } from "assets";
 import { Icon } from "components";
 import { MenuNav, Portal, Title } from "components";
-import { PortalTarget } from "components";
+import { portalTarget } from "components";
 import { AnimatePresence } from "framer-motion";
 
 export const BurgerMenu = () => {
@@ -17,7 +17,7 @@ export const BurgerMenu = () => {
       </Burger>
       <AnimatePresence>
         {isActive && (
-          <Portal target={PortalTarget.BURGER_MENU}>
+          <Portal target={portalTarget.BURGER_MENU}>
             <StyledBurgerMenu>
               <Background
                 onClick={handleBackground}
