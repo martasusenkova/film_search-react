@@ -12,7 +12,7 @@ export const MenuLink = ({ children, title, to }: MenuLinkProps) => {
   const isActive = useMatch(to);
   return (
     <StyledNavLink to={to} $isActive={isActive}>
-      {children}
+      <span className="icon-wrapper">{children}</span>
       {title}
     </StyledNavLink>
   );
