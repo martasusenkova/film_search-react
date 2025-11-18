@@ -6,6 +6,7 @@ import searchReducer from "./features/searchSlice";
 import themeReducer from "./features/themeSlice";
 import trendsReducer from "./features/trendsSlice";
 import userReducer from "./features/userSlice";
+import filtersReducer from "./features/filtersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     search: searchReducer,
     theme: themeReducer,
     trends: trendsReducer,
+    filters: filtersReducer,
     user: userReducer,
   },
 });

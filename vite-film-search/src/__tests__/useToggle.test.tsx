@@ -1,4 +1,3 @@
-import React from "react";
 import "./dom-setup";
 import { render, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";

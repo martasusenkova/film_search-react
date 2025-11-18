@@ -7,5 +7,5 @@ export const ROUTE = {
   REGISTRATION: "registration",
   MOVIE: "movie/:id",
   RESET_PASSWORD: "password-reset",
-  SEARCH: "search/:name",
+  SEARCH: "search/:name?",
 } as const;
