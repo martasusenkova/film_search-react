@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, ButtonTop, MovieList } from "components";
-import { fetchHomeMovies, getMovies, useAppDispatch, useAppSelector } from "store";
+import { fetchHomeMovies, getFilteredMovies, useAppDispatch, useAppSelector } from "store";
 import { PageBlock } from "ui";
 import type { RequestOption } from "types";
 
 export const HomePage = () => {
-  const { movies, isLoading, error } = useAppSelector(getMovies);
+  const { movies, isLoading, error } = useAppSelector(getFilteredMovies);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
   const handleShowMore = () => setPage((prevPage) => ++prevPage);

@@ -1,6 +1,6 @@
 import { Button, ButtonTop, MovieList } from "components";
 import { useEffect, useState } from "react";
-import { fetchSearchMovies, getSearchMovies, useAppDispatch, useAppSelector } from "store";
+import { fetchSearchMovies, getFilteredSearchMovies, useAppDispatch, useAppSelector } from "store";
 import { useParams, useSearchParams } from "react-router-dom";
 import { PageBlock } from "ui";
 
@@ -20,7 +20,7 @@ export const SearchPage = () => {
       dispatch(fetchSearchMovies({ name, year, type, page }));
     } else name && dispatch(fetchSearchMovies({ name, page }));
   }, [dispatch, name, page, year, type]);
-  const { movies, isLoading, error } = useAppSelector(getSearchMovies);
+  const { movies, isLoading, error } = useAppSelector(getFilteredSearchMovies);
   return (
     <PageBlock>
       <MovieList movies={movies} isLoading={isLoading} error={error} />

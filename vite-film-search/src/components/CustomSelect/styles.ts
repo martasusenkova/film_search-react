@@ -34,6 +34,7 @@ export const selectStyles: StylesConfig = {
     borderRadius: "10px",
     background: Color.SELECT_BG,
     marginBottom: "0",
+    zIndex: 1002,
   }),
   menuList: (styles) => ({
     ...styles,

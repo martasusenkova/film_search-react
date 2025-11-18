@@ -22,10 +22,7 @@ const getFavoritesCache = (): MovieInfo[] => {
 const setFavoritesCache = (favorites: MovieInfo[]) => {
   localStorage.setItem(FAVORITES_CACHE_KEY, JSON.stringify(favorites));
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const clearFavoritesCache = () => {
-  localStorage.removeItem(FAVORITES_CACHE_KEY);
-};
+// helper to clear cache (removed unused function to avoid TS/IDE warning)
 
 interface FavoritesState {
   favorites: MovieInfo[];
