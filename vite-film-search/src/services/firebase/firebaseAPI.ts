@@ -25,7 +25,6 @@ import type { SignInData, SignUpData } from "./types";
 import type { MovieInfo, SettingsData } from "types";
 import { StoreError } from "services";
 
-// Initialize analytics (guarded) but don't block initialization flow.
 void initAnalytics(app);
 
 const auth = getAuth(app);

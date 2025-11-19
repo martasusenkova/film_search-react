@@ -11,6 +11,7 @@ import { Button, MovieType, CustomSelect, Portal, Title, portalTarget } from "co
 import { useAppDispatch, useAppSelector } from "store";
 import { setFilters, clearFilters, addGenre, removeGenre, selectFilters } from "store";
 import type { SelectOption } from "components";
+
 import {
   Section,
   LabelText,
