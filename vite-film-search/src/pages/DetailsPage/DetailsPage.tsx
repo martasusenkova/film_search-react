@@ -9,7 +9,7 @@ import {
   getUser,
 } from "store";
 import type { MovieInfo } from "types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Details,
   EncyclopedicTable,
@@ -31,13 +31,32 @@ import { Icon } from "components";
 export const DetailsPage = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const { movie, isLoading, error } = useAppSelector(getMovie);
+
   const { isAuth } = useAppSelector(getUser);
+  const { movie, isLoading, error } = useAppSelector(getMovie);
   const favState = useAppSelector(getFavorites);
+
   const favorites = favState.favorites as MovieInfo[];
+
+  const [delayPassed, setDelayPassed] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayPassed(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (id) dispatch(getMovieById(id));
   }, [dispatch, id]);
+
+  const showSpinner = isLoading && !delayPassed;
+
+  if (showSpinner) return <Spinner />;
+  if (error) return <Feedback text="Movie is not found" />;
+
   const tableValues = [
     { title: "Year", value: movie.year },
     { title: "Released", value: movie.released },
@@ -48,13 +67,13 @@ export const DetailsPage = () => {
     { title: "Director", value: movie.director },
     { title: "Writers", value: movie.writer },
   ];
-  const isFavorite = Boolean(movie && favorites.some((f: MovieInfo) => f.imdbID === movie.imdbID));
+
+  const isFavorite = favorites.some((f) => f.imdbID === movie.imdbID);
 
   const handleFavorite = () => {
     dispatch(addFavorite(movie));
   };
-  if (isLoading) return <Spinner />;
-  if (error) return <Feedback text="Movie is not found" />;
+
   return (
     <StyledDetailsMoviePage
       initial={{ opacity: 0 }}
@@ -71,10 +90,12 @@ export const DetailsPage = () => {
         ) : (
           <Poster loading="lazy" src={movie.poster} alt={`poster ${movie.title}`} />
         )}
+
         <PosterControls>
-          <ControlButton $active={Boolean(isFavorite)} onClick={handleFavorite} disabled={!isAuth}>
+          <ControlButton $active={isFavorite} onClick={handleFavorite} disabled={!isAuth}>
             <Icon icon={BookMarkIcon} />
           </ControlButton>
+
           <ControlButton
             onClick={() => navigator?.share?.({ title: movie.title, url: window.location.href })}
           >
@@ -82,9 +103,16 @@ export const DetailsPage = () => {
           </ControlButton>
         </PosterControls>
       </PosterWrapper>
+
       <Details>
-        <Genres>{movie.genres && movie.genres.map((genre) => <p key={genre}>{genre}</p>)}</Genres>
+        <Genres>
+          {movie.genres?.map((genre) => (
+            <p key={genre}>{genre}</p>
+          ))}
+        </Genres>
+
         <Title text={movie.title} option="H1" />
+
         <Ratings>
           <WrapperRate $greenVariant>{movie.imdbRating}</WrapperRate>
           <WrapperRate>
@@ -92,7 +120,9 @@ export const DetailsPage = () => {
           </WrapperRate>
           <WrapperRate>{movie.runTime}</WrapperRate>
         </Ratings>
+
         <Plot>{movie.plot}</Plot>
+
         <EncyclopedicTable>
           <tbody>
             {tableValues.map((row) => (
