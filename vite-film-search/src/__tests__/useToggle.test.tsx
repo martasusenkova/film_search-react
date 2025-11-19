@@ -1,7 +1,6 @@
 import "./dom-setup";
 import { render, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-// Ensure DOM exists for environments where vitest config/setupFiles might not be applied
 import { useToggle } from "../hooks/useToggle";
 
 function TestComp() {

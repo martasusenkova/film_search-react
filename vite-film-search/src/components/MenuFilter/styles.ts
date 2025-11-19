@@ -17,7 +17,6 @@ export const StyledFilterMenu = styled.div`
   ${Media.MD} {
     grid-template-columns: 1fr 420px;
     width: 100%;
-    height: 100%;
   }
   ${Media.XL} {
     grid-template-columns: 1fr 500px;
@@ -34,13 +33,12 @@ export const Background = styled(motion.div)`
 
 export const Filters = styled(motion.form)`
   display: grid;
-  grid-template-rows: 64px 1fr 96px;
+  grid-template-rows: auto 1fr auto;
   grid-gap: 24px;
   background-color: ${Color.BLOCK_BG};
   border-radius: 10px 0 0 10px;
   padding: 32px 36px;
-  /* make whole panel full height and keep footer row visible at bottom */
-  height: 100vh;
+  max-height: 100vh;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 2px ${Color.PRIMARY}18;
   border-left: 3px solid ${Color.PRIMARY}33;
   ${Media.LG} {
@@ -56,31 +54,22 @@ export const Filters = styled(motion.form)`
     border-radius: 0px;
     padding: 20px 16px;
     grid-gap: 16px;
-    overflow-y: auto;
-    max-height: 100vh;
   }
 
-  /* allow scrolling on medium+ screens so footer can stick */
   ${Media.MD} {
     max-height: 100vh;
   }
 
-  /* make the middle row scrollable so footer never covers inputs */
   & > *:nth-child(2) {
-    /* On MD+: use overflow: visible so select menus can expand upward */
+    min-height: 0;
     overflow: visible;
-    /* calculate available height: full viewport minus header/footer rows */
-    max-height: calc(100vh - 64px - 96px);
-    padding-bottom: 14px;
+    padding-bottom: 28px;
   }
 
   ${Media.SM} {
     & > *:nth-child(2) {
-      /* On small screens: allow internal scrolling but keep menu visible */
-      overflow-y: auto;
-      overflow-x: hidden;
-      max-height: calc(100vh - 50px - 80px);
-      padding-bottom: 40px;
+      overflow: visible;
+      padding-bottom: 48px;
     }
   }
 
@@ -228,11 +217,10 @@ export const Footer = styled.div`
   align-items: center;
   padding-top: 8px;
   gap: 12px;
-  /* default: non-sticky so on small screens footer sits after content
-     on MD+ screens it becomes sticky at bottom of the filter panel */
+
   position: relative;
   padding-bottom: 6px;
-  z-index: 3;
+  z-index: 5;
 
   ${Media.MD} {
     position: sticky;

@@ -1,36 +1,31 @@
-import { Feedback, Spinner, MovieCard } from "components";
+import { Feedback, MovieCard } from "components";
 import { useEffect, useState } from "react";
 import { fetchFavorites, getFavorites, useAppDispatch, useAppSelector } from "store";
 import { FavoriteList } from "./styles";
 import type { MovieInfo } from "types";
-
 const FAVORITES_CACHE_KEY = "favorites_cache";
 
 export const FavoritesPage = () => {
-  const { favorites: storeFavorites, isLoading } = useAppSelector(getFavorites);
+  const { favorites: storeFavorites } = useAppSelector(getFavorites);
   const dispatch = useAppDispatch();
+
   const [favorites, setFavorites] = useState(() => {
-    // получаем из localStorage при первом рендере
     const cached = localStorage.getItem(FAVORITES_CACHE_KEY);
     return cached ? JSON.parse(cached) : [];
   });
 
   useEffect(() => {
-    // если в store нет данных и кэша пусто — загружаем с сервера
     if (!storeFavorites.length && !favorites.length) {
       dispatch(fetchFavorites());
     }
   }, [dispatch, storeFavorites.length, favorites.length]);
 
-  // синхронизируем локальный стейт с store после загрузки
   useEffect(() => {
     if (storeFavorites.length) {
       setFavorites(storeFavorites);
       localStorage.setItem(FAVORITES_CACHE_KEY, JSON.stringify(storeFavorites));
     }
   }, [storeFavorites]);
-
-  if (isLoading && !favorites.length) return <Spinner />;
 
   if (!favorites.length) {
     return <Feedback text="Favorites not found" />;
