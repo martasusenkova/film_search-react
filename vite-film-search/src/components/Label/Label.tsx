@@ -1,11 +1,10 @@
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 import { StyledLabel } from "./styles";
-import type { CSSObject } from "styled-components";
 
 interface LabelProps {
   text: string;
-  children: ReactNode;
-  style?: CSSObject;
+  children?: ReactNode;
+  style?: CSSProperties; // <- React ожидает CSSProperties
 }
 
 export const Label = ({ text, style, children }: LabelProps) => {

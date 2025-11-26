@@ -1,0 +1,20 @@
+export var Color;
+(function (Color) {
+    Color["PRIMARY"] = "#7B61FF";
+    Color["PRIMARY_LIGHT"] = "#917CFF";
+    Color["SECONDARY"] = "#80858B";
+    Color["BLACK"] = "#000000";
+    Color["DARK"] = "#242426";
+    Color["GRAPHITE"] = "#323537";
+    Color["ERROR"] = "#FF5154";
+    Color["LIGHT"] = "#AFB2B6";
+    Color["WHITE"] = "#FFFFFF";
+    Color["GREEN"] = "#00A340";
+    Color["YELLOW"] = "#F3A608";
+    Color["ORANGE"] = "#F45D2D";
+    Color["PRIMARY_TEXT"] = "var(--primary-text)";
+    Color["PRIMARY_BG"] = "var(--primary-bg)";
+    Color["SECONDARY_BG"] = "var(--secondary-bg)";
+    Color["BLOCK_BG"] = "var(--block-bg)";
+    Color["SELECT_BG"] = "var(--select-bg)";
+})(Color || (Color = {}));

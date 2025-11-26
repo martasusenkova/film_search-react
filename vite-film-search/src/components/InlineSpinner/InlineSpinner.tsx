@@ -1,4 +1,4 @@
-import { InlineLoader, InlineWrapper } from "./styles.ts";
+import { InlineLoader, InlineWrapper } from "./styles";
 
 export const InlineSpinner = () => (
   <InlineWrapper>
