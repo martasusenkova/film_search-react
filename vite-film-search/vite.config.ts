@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig({
   // Ensure svgr runs before the React plugin so SVG imports are transformed
-  base: "/<film_search-react>/",
+  base: "/film_search-react/",
   plugins: [svgr(), react()],
   resolve: {
     alias: {
