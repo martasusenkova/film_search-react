@@ -4,7 +4,7 @@ import { StyledLabel } from "./styles";
 interface LabelProps {
   text: string;
   children?: ReactNode;
-  style?: CSSProperties; // <- React ожидает CSSProperties
+  style?: CSSProperties;
 }
 
 export const Label = ({ text, style, children }: LabelProps) => {
